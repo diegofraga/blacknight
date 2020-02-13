@@ -4,4 +4,6 @@
     <string name="return_lock_string">Return Lock Task Mode</string>
     <string name="not_lock_whitelisted_string">App not writelisted. Please set DCP policy management.Mange lock task list</string>
     <string name="stop_lock_button_string">Start Lock Task Mode</string>
+    <string name="not_device_owner">This app is not set as device owner
+        and cannot start lock task mode</string>
 </resources>

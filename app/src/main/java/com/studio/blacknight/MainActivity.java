@@ -2,8 +2,10 @@ package com.studio.blacknight;
 
 import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,14 @@ public class MainActivity extends Activity {
     public DevicePolicyManager mDevicePolicyManager;
 
 
+    private PackageManager mPackageManager;
+    private ComponentName mAdminComponentName;
+
+    // Whitelist two apps.
+    private static final String KIOSK_PACKAGE = "com.studio.blacknight";
+    private static final String PLAYER_PACKAGE = "com.example.player";
+    private static final String[] APP_PACKAGES = {KIOSK_PACKAGE, PLAYER_PACKAGE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +37,29 @@ public class MainActivity extends Activity {
         mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 
 
+        // Retrieve DeviceAdminReceiver ComponentName so we can make
+        // device management api calls later
+        mAdminComponentName = DeviceAdminReceiver.getComponentName(this);
+
+        // Retrieve Package Manager so that we can enable and
+        // disable LockedActivity
+        mPackageManager = this.getPackageManager();
+
+        mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, APP_PACKAGES);
+
         lockTaskButton = findViewById(R.id.start_lock_button);
         lockTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ( mDevicePolicyManager.isLockTaskPermitted(getApplicationContext().getPackageName())) {
                     Intent lockIntent = new Intent(getApplicationContext(), LockedActivity.class);
+
+                    //enable the lock acvity before the intent was send
+                    mPackageManager.setComponentEnabledSetting(
+                            new ComponentName(getApplicationContext(),
+                                    LockedActivity.class),
+                            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.DONT_KILL_APP);
                     startActivity(lockIntent);
                     finish();
                 } else {
@@ -41,6 +68,21 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+
+
+        // Check to see if started by LockActivity and disable LockActivity if so
+        Intent intent = getIntent();
+
+        if(intent.getIntExtra(LockedActivity.LOCK_ACTIVITY_KEY,0) ==
+                LockedActivity.FROM_LOCK_ACTIVITY){
+            mDevicePolicyManager.clearPackagePersistentPreferredActivities(
+                    mAdminComponentName,getPackageName());
+            mPackageManager.setComponentEnabledSetting(
+                    new ComponentName(getApplicationContext(), LockedActivity.class),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
+        }
 
 
     }
