@@ -74,12 +74,9 @@ public class LockedActivity extends Activity {
                 mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
                 mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
 
-                //Context context = getApplicationContext();
-                // Set an option to turn on lock task mode when starting the activity.
-                //ActivityOptions options = ActivityOptions.makeBasic();
-                //options.setLockTaskEnabled(true);
 
-                // Start our kiosk app's main activity with our lock task mode option.
+
+                // Start app's main activity with our lock task mode option.
                 PackageManager packageManager = LockedActivity.this.getPackageManager();
                 Intent launchIntent = packageManager.getLaunchIntentForPackage(MainActivity.WAZE_PACKAGE);
 
@@ -107,10 +104,6 @@ public class LockedActivity extends Activity {
                 mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
                 mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
 
-                //Context context = getApplicationContext();
-                // Set an option to turn on lock task mode when starting the activity.
-                //ActivityOptions options = ActivityOptions.makeBasic();
-                //options.setLockTaskEnabled(true);
 
                 // Start our kiosk app's main activity with our lock task mode option.
                 PackageManager packageManager = LockedActivity.this.getPackageManager();

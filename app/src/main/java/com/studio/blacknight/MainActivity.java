@@ -26,7 +26,9 @@ public class MainActivity extends Activity {
     public static final String KIOSK_PACKAGE = "com.studio.blacknight";
     public static final String WAZE_PACKAGE = "com.waze";
     public static final String AUTO_PACKAGE = "com.google.android.projection.gearhead";
-    public static final String[] APP_PACKAGES = {KIOSK_PACKAGE, WAZE_PACKAGE, AUTO_PACKAGE};
+    public static final String YOUTUBEMUSIC_PACKAGE = "com.google.android.apps.youtube.music";
+    public static final String GOOGLEMAPS_PACKAGE = "com.google.android.apps.maps";
+    public static final String[] APP_PACKAGES = {KIOSK_PACKAGE, WAZE_PACKAGE, AUTO_PACKAGE,YOUTUBEMUSIC_PACKAGE, GOOGLEMAPS_PACKAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
