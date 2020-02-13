@@ -1,11 +1,13 @@
 package com.studio.blacknight;
 
 import android.app.ActivityManager;
+import android.app.ActivityOptions;
 import android.app.admin.SystemUpdatePolicy;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +22,8 @@ public class LockedActivity extends Activity {
 
 
     private Button stopLockButton;
+    private Button wazeButton;
+    private Button autoButton;
     private DevicePolicyManager mDevicePolicyManager;
 
 
@@ -36,8 +40,7 @@ public class LockedActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locked);
 
-        mDevicePolicyManager = (DevicePolicyManager)
-                getSystemService(Context.DEVICE_POLICY_SERVICE);
+        mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 
         // Setup stop lock task button
         stopLockButton = findViewById(R.id.stop_lock_button);
@@ -60,6 +63,70 @@ public class LockedActivity extends Activity {
                 finish();
             }
         });
+
+        wazeButton = findViewById(R.id.WazeButton);
+        wazeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //test lauch Waze
+
+                mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+                mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
+
+                //Context context = getApplicationContext();
+                // Set an option to turn on lock task mode when starting the activity.
+                //ActivityOptions options = ActivityOptions.makeBasic();
+                //options.setLockTaskEnabled(true);
+
+                // Start our kiosk app's main activity with our lock task mode option.
+                PackageManager packageManager = LockedActivity.this.getPackageManager();
+                Intent launchIntent = packageManager.getLaunchIntentForPackage(MainActivity.WAZE_PACKAGE);
+
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }else{
+                        Toast.makeText(getApplicationContext(),
+                           "Desgraça", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
+
+        autoButton = findViewById(R.id.android_auto_button);
+        autoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //test lauch Auto Android
+
+                mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+                mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
+
+                //Context context = getApplicationContext();
+                // Set an option to turn on lock task mode when starting the activity.
+                //ActivityOptions options = ActivityOptions.makeBasic();
+                //options.setLockTaskEnabled(true);
+
+                // Start our kiosk app's main activity with our lock task mode option.
+                PackageManager packageManager = LockedActivity.this.getPackageManager();
+                Intent launchIntent = packageManager.getLaunchIntentForPackage(MainActivity.AUTO_PACKAGE);
+
+                if (launchIntent != null) {
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }else{
+                    Toast.makeText(getApplicationContext(),
+                            "Desgraça", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
 
 
         // Set Default blacknight policy
