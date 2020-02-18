@@ -84,7 +84,7 @@ public class LockedActivity extends Activity {
                     startActivity(launchIntent);//null pointer check in case package name was not found
                 }else{
                         Toast.makeText(getApplicationContext(),
-                           "Desgraça", Toast.LENGTH_SHORT).show();
+                           "Waze App not installed", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -99,7 +99,7 @@ public class LockedActivity extends Activity {
             public void onClick(View v) {
 
 
-                //test lauch Auto Android
+                //test launch Auto Android
 
                 mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
                 mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
@@ -113,7 +113,7 @@ public class LockedActivity extends Activity {
                     startActivity(launchIntent);//null pointer check in case package name was not found
                 }else{
                     Toast.makeText(getApplicationContext(),
-                            "Desgraça", Toast.LENGTH_SHORT).show();
+                            "Auto Android not installed", Toast.LENGTH_SHORT).show();
                 }
 
 
