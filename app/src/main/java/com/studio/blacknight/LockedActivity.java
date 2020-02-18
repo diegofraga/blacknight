@@ -1,7 +1,6 @@
 package com.studio.blacknight;
 
 import android.app.ActivityManager;
-import android.app.ActivityOptions;
 import android.app.admin.SystemUpdatePolicy;
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,18 +21,11 @@ public class LockedActivity extends Activity {
 
 
     private Button stopLockButton;
-    private Button wazeButton;
     private Button autoButton;
     private DevicePolicyManager mDevicePolicyManager;
-
-
     private ComponentName mAdminComponentName;
     public static final String LOCK_ACTIVITY_KEY = "lock_activity";
     public static final int FROM_LOCK_ACTIVITY = 1;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,46 +56,15 @@ public class LockedActivity extends Activity {
             }
         });
 
-        wazeButton = findViewById(R.id.WazeButton);
-        wazeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //test lauch Waze
-
-                mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-                mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
-
-
-
-                // Start app's main activity with our lock task mode option.
-                PackageManager packageManager = LockedActivity.this.getPackageManager();
-                Intent launchIntent = packageManager.getLaunchIntentForPackage(MainActivity.WAZE_PACKAGE);
-
-                if (launchIntent != null) {
-                    startActivity(launchIntent);//null pointer check in case package name was not found
-                }else{
-                        Toast.makeText(getApplicationContext(),
-                           "Waze App not installed", Toast.LENGTH_SHORT).show();
-                }
-
-
-
-            }
-        });
-
-
         autoButton = findViewById(R.id.android_auto_button);
         autoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                //test launch Auto Android
-
+                //Launch Auto Android
                 mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
                 mDevicePolicyManager.setLockTaskPackages(mAdminComponentName, MainActivity.APP_PACKAGES);
-
 
                 // Start our kiosk app's main activity with our lock task mode option.
                 PackageManager packageManager = LockedActivity.this.getPackageManager();

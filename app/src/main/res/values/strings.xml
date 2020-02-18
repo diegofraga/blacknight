@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name_string">Black Night</string>
-    <string name="start_lock_string">Start Lock Task Mode</string>
-    <string name="return_lock_string">Return Lock Task Mode</string>
-    <string name="not_lock_whitelisted_string">App not writelisted. Please set DCP policy management.Mange lock task list</string>
-    <string name="stop_lock_button_string">Start Lock Task Mode</string>
+    <string name="start_lock_string">Kiosk Mode</string>
+    <string name="return_lock_string">Return Kiosk Mode</string>
+    <string name="not_lock_whitelisted_string">App not writelisted. Please set DCP policy management.Manage lock task list</string>
     <string name="not_device_owner">This app is not set as device owner
         and cannot start lock task mode</string>
+    <string name="device_owner_not_set">Owner profile not set. Check the  device_owner_2.xml was insert correctly"</string>
 </resources>

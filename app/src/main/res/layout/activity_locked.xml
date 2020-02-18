@@ -7,47 +7,44 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name_string"
-        android:textSize="24sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="380dp"
+        android:layout_height="160dp"
+        android:contentDescription="Positivo Image"
+        android:src="@mipmap/positivo_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/stop_lock_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/BlueButton"
+        android:layout_width="201dp"
+        android:layout_height="65dp"
         android:text="@string/return_lock_string"
+        android:textColor="#F5F0F0"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/WazeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Waze"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/android_auto_button" />
 
     <Button
         android:id="@+id/android_auto_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/BlueButton"
+        android:layout_width="201dp"
+        android:layout_height="65dp"
         android:text="Android Auto"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:textColor="#F5F0F0"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/WazeButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
