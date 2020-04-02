@@ -20,6 +20,7 @@ __$ adb shell dpm remove-active-admin com.studio.blacknight/.DeviceAdminReceiver
 
 - Set Lock Task Mode
 - Set Stay Awake 
+- Set Whitelist apps (Waze, Google Maps)
 - Disable Safe Boot
 - Disable Factory Reset
 - Disable Add new User
@@ -29,8 +30,12 @@ __$ adb shell dpm remove-active-admin com.studio.blacknight/.DeviceAdminReceiver
 - Disable Status Bar
 
 
-
 ## Goals
+
+- [x] Set Lock Task Mode
+- [x] Add apps to Writelist
+- [ ] Add Profile ODM project (Default Project Android)
+
 
 
 
